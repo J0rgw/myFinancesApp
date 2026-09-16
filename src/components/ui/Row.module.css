@@ -1,0 +1,100 @@
+.fila {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  width: 100%;
+  min-height: var(--alto-fila);
+  padding: var(--sp-4) var(--sp-5);
+  text-align: left;
+  color: var(--etiqueta);
+  background: transparent;
+  /* Sin esto el destello de :active se pinta fuera de los bordes redondeados */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*
+ * El pelo separador: 0.5px reales, sangrado por la izquierda hasta donde empieza
+ * el texto, a sangre por la derecha, y ausente en la ultima fila. Es el detalle
+ * que hace que un grupo parezca dibujado por Apple.
+ */
+.fila:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: var(--sangria-separador);
+  right: 0;
+  height: var(--grosor-hairline);
+  background: var(--separador);
+}
+
+.fila[data-con-icono]:not(:last-child)::after {
+  left: var(--sangria-separador-icono);
+}
+
+/*
+ * Las filas de iOS NO se escalan al tocarlas: destellan un relleno, inmediato al
+ * bajar el dedo y desvanecido al soltar. Un scale(0.96) en una fila a todo ancho
+ * es un gesto de web, no de iOS. El escalado es para botones y tarjetas.
+ */
+.pulsable {
+  transition: background-color var(--dur-resalte, 0.25s) ease-out;
+}
+
+.pulsable[data-pulsada='true'] {
+  background-color: var(--resalte-fila);
+  transition-duration: 0s;
+}
+
+.icono {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 7px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.centro {
+  flex: 1;
+  /* min-width:0 es lo que permite que el texto se recorte dentro de un flex */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.etiqueta {
+  display: block;
+  font-size: var(--texto-body);
+  line-height: var(--linea-body);
+  letter-spacing: var(--track-body);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detalle {
+  display: block;
+  font-size: var(--texto-footnote);
+  line-height: var(--linea-footnote);
+  letter-spacing: var(--track-footnote);
+  color: var(--etiqueta-secundaria);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.valor {
+  font-size: var(--texto-body);
+  line-height: var(--linea-body);
+  letter-spacing: var(--track-body);
+  color: var(--etiqueta-secundaria);
+  flex-shrink: 0;
+}
+
+.chevron {
+  color: var(--etiqueta-terciaria);
+  flex-shrink: 0;
+}

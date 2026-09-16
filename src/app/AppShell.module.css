@@ -1,0 +1,24 @@
+/*
+ * El hueco que queda detras del shell cuando se escala tiene que ser negro: es lo
+ * que hace que el sheet tipo tarjeta se lea como una tarjeta encima de otra.
+ */
+.raiz {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.shell {
+  position: absolute;
+  inset: 0;
+  background: var(--fondo-agrupado);
+  /* La vista se encoge hacia arriba, como en iOS */
+  transform-origin: top center;
+  overflow: hidden;
+}
+
+.pantallas {
+  position: absolute;
+  inset: 0;
+}

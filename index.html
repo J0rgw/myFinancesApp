@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!--
+      viewport-fit=cover is load-bearing: without it every env(safe-area-inset-*)
+      in the stylesheet silently resolves to 0px and all safe-area handling stops
+      working with no visible error.
+    -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <!-- iOS reads the meta tag, not the manifest, for the status bar area. -->
+    <meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--
+      Do NOT set this back to black-translucent.
+
+      black-translucent draws the page under the clock, but in standalone iOS then
+      reports env(safe-area-inset-top) as 0px (confirmed on a real installed iPhone).
+      The nav bar collapses to y=0 and its title lands inside the Dynamic Island.
+      viewport-fit=cover does not rescue it: the inset reads 0 regardless.
+
+      With `default` iOS reserves the status bar strip itself, so the overlap cannot
+      happen on any model and no per-device magic number is needed. The cost is that
+      the bar's material no longer extends under the clock; theme-color paints that
+      strip instead, which is why it has to track --fondo-agrupado in both themes.
+    -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="moneyman" />
+
+    <meta name="description" content="Controla tus gastos y tu meta de ahorro. Todo se guarda en tu dispositivo." />
+
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <title>moneyman</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

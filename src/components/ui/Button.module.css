@@ -1,0 +1,49 @@
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  /* Objetivo tactil minimo de iOS */
+  min-height: var(--alto-fila);
+  padding: 0 var(--sp-5);
+  border-radius: var(--radio-boton);
+  font-size: var(--texto-body);
+  line-height: var(--linea-body);
+  letter-spacing: var(--track-body);
+  font-weight: var(--peso-semibold);
+}
+
+.relleno {
+  background: var(--azul);
+  color: #fff;
+  width: 100%;
+}
+
+.gris {
+  background: var(--relleno-terciario);
+  color: var(--etiqueta);
+  width: 100%;
+}
+
+.destructivo {
+  background: var(--relleno-terciario);
+  color: var(--rojo);
+  width: 100%;
+}
+
+/* Boton de barra: solo texto, sin fondo ni padding lateral */
+.plano {
+  min-height: var(--alto-fila);
+  padding: 0;
+  color: var(--azul);
+  font-weight: var(--peso-regular);
+}
+
+.plano[data-enfasis='true'] {
+  font-weight: var(--peso-semibold);
+}
+
+.boton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}

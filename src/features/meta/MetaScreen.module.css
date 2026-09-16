@@ -1,0 +1,46 @@
+.resultado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-6) var(--margen);
+}
+
+.cifra {
+  font-size: var(--texto-large-title);
+  line-height: var(--linea-large-title);
+  letter-spacing: var(--track-large-title);
+  font-weight: var(--peso-bold);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+.cifraMal {
+  color: var(--rojo);
+}
+
+.leyenda {
+  font-size: var(--texto-subhead);
+  line-height: var(--linea-subhead);
+  letter-spacing: var(--track-subhead);
+  color: var(--etiqueta-secundaria);
+  text-align: center;
+}
+
+.aviso {
+  color: var(--naranja);
+  font-weight: var(--peso-medium);
+  text-align: center;
+  max-width: 320px;
+}
+
+/* El "/mes" que sigue al importe en cada fila de meta: más pequeño y apagado. */
+.porMes {
+  font-size: var(--texto-footnote);
+  color: var(--etiqueta-terciaria);
+  margin-left: 1px;
+}
+
+.completada {
+  color: var(--verde);
+}

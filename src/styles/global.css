@@ -1,0 +1,138 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * El "shell fijo": nada hace scroll salvo el contenedor interno de <Screen>.
+ *
+ * Esta decision sola elimina cuatro problemas a la vez:
+ *   - el bug de 100vh en Safari de iOS,
+ *   - el rebote (rubber-band) del documento,
+ *   - el "tirar para recargar" que en modo standalone reinicia la PWA entera,
+ *   - la necesidad de bloquear el scroll del body al abrir un sheet.
+ *
+ * No añadir scroll al documento.
+ */
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+html {
+  /* iOS agranda el texto al girar a horizontal si no se desactiva */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--fuente);
+  font-size: var(--texto-body);
+  line-height: var(--linea-body);
+  letter-spacing: var(--track-body);
+  font-weight: var(--peso-regular);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color: var(--etiqueta);
+  background: var(--fondo-agrupado);
+
+  /* El destello gris al tocar delata una web al instante */
+  -webkit-tap-highlight-color: transparent;
+  /* El menu de compartir/copiar al mantener pulsado */
+  -webkit-touch-callout: none;
+  /* Arrastrar el sheet no debe seleccionar su texto */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#root {
+  isolation: isolate;
+}
+
+/* El texto que el usuario puede querer copiar si vuelve a ser seleccionable */
+input,
+textarea,
+[data-seleccionable] {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  /* Quita el retardo de 300ms sin recurrir a user-scalable=no */
+  touch-action: manipulation;
+}
+
+input {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+input::placeholder {
+  color: var(--etiqueta-terciaria);
+}
+
+/* Safari pinta sus propias flechas y fondo en los number/date si no se desactiva */
+input[type='date'] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* En iOS :hover se queda pegado despues de tocar. Solo aplicarlo con raton real. */
+@media (hover: none) {
+  a:hover,
+  button:hover {
+    background-color: inherit;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Los importes con cifras de ancho fijo: si no, el numero baila al animarse */
+[data-numero] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,262 @@
+/*
+ * Tokens de diseño. Colores del sistema de iOS.
+ *
+ * Dos reglas que es facil romper:
+ *
+ * 1. El fondo agrupado se INVIERTE entre temas. En claro las tarjetas son
+ *    blancas sobre gris; en oscuro son grises sobre negro puro. Al reves parece
+ *    una app de Material con tema oscuro, no una app de iOS.
+ *
+ * 2. Los colores de las graficas se leen desde CSS con var(--cat-*). Nunca se
+ *    pasa un hex desde JS a un SVG: el modo oscuro deja de funcionar y no se ve
+ *    hasta que alguien lo prueba de noche.
+ */
+
+/* Solo el subconjunto latino: cubre el español entero (incluido el símbolo del
+   euro) y ahorra ~175 KB frente a cargar los 7 subconjuntos de Inter.
+   En iOS esto no llega a descargarse nunca: gana -apple-system. */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+
+  /* SF Pro no se puede empaquetar legalmente para web. En Apple -apple-system da
+     la SF real; Inter es el respaldo para el resto (y para el navegador de escritorio
+     mientras se diseña). */
+  --fuente: -apple-system, BlinkMacSystemFont, 'Inter Variable', system-ui, sans-serif;
+
+  /* ---- Escala tipografica de iOS: tamaño / interlineado / tracking ---- */
+  --texto-large-title: 34px;
+  --linea-large-title: 41px;
+  --track-large-title: -0.4px;
+
+  --texto-title1: 28px;
+  --linea-title1: 34px;
+  --track-title1: -0.36px;
+
+  --texto-title2: 22px;
+  --linea-title2: 28px;
+  --track-title2: -0.35px;
+
+  --texto-title3: 20px;
+  --linea-title3: 25px;
+  --track-title3: -0.38px;
+
+  /* 17px es el cuerpo de iOS y ademas el minimo que evita que Safari haga zoom
+     al enfocar un input. No bajar de 16px en campos de formulario. */
+  --texto-body: 17px;
+  --linea-body: 22px;
+  --track-body: -0.41px;
+
+  --texto-callout: 16px;
+  --linea-callout: 21px;
+  --track-callout: -0.32px;
+
+  --texto-subhead: 15px;
+  --linea-subhead: 20px;
+  --track-subhead: -0.24px;
+
+  --texto-footnote: 13px;
+  --linea-footnote: 18px;
+  --track-footnote: -0.08px;
+
+  --texto-caption1: 12px;
+  --linea-caption1: 16px;
+  --track-caption1: 0px;
+
+  --texto-caption2: 11px;
+  --linea-caption2: 13px;
+  --track-caption2: 0.06px;
+
+  --peso-regular: 400;
+  --peso-medium: 500;
+  --peso-semibold: 600;
+  --peso-bold: 700;
+
+  /* ---- Espaciado ---- */
+  --sp-1: 2px;
+  --sp-2: 4px;
+  --sp-3: 8px;
+  --sp-4: 12px;
+  --sp-5: 16px;
+  --sp-6: 20px;
+  --sp-7: 24px;
+  --sp-8: 32px;
+  --sp-9: 44px;
+
+  /* Margen lateral estandar de las listas agrupadas de iOS */
+  --margen: 16px;
+  /* Sangria del separador: empieza donde empieza el texto, no en el borde */
+  --sangria-separador: 16px;
+  --sangria-separador-icono: 60px;
+
+  /* ---- Radios ---- */
+  --radio-tarjeta: 10px;
+  --radio-grupo: 10px;
+  --radio-sheet: 12px;
+  --radio-boton: 12px;
+  --radio-continuo: 22px;
+  /* Capsula: un radio mayor que media altura se recorta solo al semicirculo, asi que
+     no hay que recalcularlo si la barra cambia de alto. */
+  --radio-capsula: 999px;
+
+  /* Las barras flotan: sin sombra no se despegan del contenido y el cristal parece
+     un agujero recortado en la pagina en vez de una pieza por encima. */
+  --sombra-flotante: 0 4px 16px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  /* Aro de contacto: separa la capsula del fondo cuando detras hay algo casi del
+     mismo tono y la sombra sola no basta. */
+  --aro-vidrio: rgba(0, 0, 0, 0.05);
+  /* Hueco entre la capsula y el borde de la pantalla / el indicador de inicio. */
+  --margen-flotante: 8px;
+
+  /* ---- Alturas ---- */
+  --alto-fila: 44px;
+  --alto-navbar: 44px;
+  --alto-tabbar: 49px;
+  --grosor-hairline: 0.5px;
+
+  /* ---- Colores del sistema (claro) ---- */
+  --azul: #007aff;
+  --verde: #34c759;
+  --rojo: #ff3b30;
+  --naranja: #ff9500;
+  --amarillo: #ffcc00;
+  --rosa: #ff2d55;
+  --morado: #af52de;
+  --indigo: #5856d6;
+  --turquesa: #30b0c7;
+  --gris: #8e8e93;
+  --gris2: #aeaeb2;
+  --gris3: #c7c7cc;
+  --gris4: #d1d1d6;
+  --gris5: #e5e5ea;
+  --gris6: #f2f2f7;
+
+  /* ---- Fondos ---- */
+  --fondo: #ffffff;
+  --fondo-secundario: #f2f2f7;
+
+  /* Estos dos se invierten en oscuro. Ver nota de arriba. */
+  --fondo-agrupado: #f2f2f7;
+  --fondo-agrupado-elevado: #ffffff;
+
+  /* ---- Texto ---- */
+  --etiqueta: #000000;
+  --etiqueta-secundaria: rgba(60, 60, 67, 0.6);
+  --etiqueta-terciaria: rgba(60, 60, 67, 0.3);
+  --etiqueta-cuaternaria: rgba(60, 60, 67, 0.18);
+
+  /* ---- Separadores y rellenos ---- */
+  --separador: rgba(60, 60, 67, 0.29);
+  --separador-opaco: #c6c6c8;
+  --relleno: rgba(120, 120, 128, 0.2);
+  --relleno-secundario: rgba(120, 120, 128, 0.16);
+  --relleno-terciario: rgba(118, 118, 128, 0.12);
+  /* El destello de una fila al tocarla. Las filas NO se escalan. */
+  --resalte-fila: rgba(120, 120, 128, 0.2);
+
+  /* ---- Materiales ----
+     Liquid glass. El material clasico de iOS era 80-94% opaco: un panel esmerilado
+     que tapa lo que pasa por debajo. Este es lo contrario, un 10% de tinte, y hay
+     que verlo con contenido detras: por la barra se distingue la FORMA de lo que
+     pasa (el arco del anillo, el icono de una fila), no una mancha de color.
+
+     Las tres cifras van juntas y se rompen solas:
+       - tinte 0.10: subirlo "para que se lea mejor" devuelve el esmerilado. Si algo
+         no contrasta, el que se toca es el brightness, no el tinte.
+       - blur 16px: por encima de ~24px las formas se funden en un degradado y otra
+         vez parece un panel pintado, no cristal.
+       - brightness 1.03: casi nada a proposito. Con 1.1 el gris del fondo se lava a
+         blanco puro y la barra vuelve a parecer opaca sobre la pagina.
+
+     El cristal se define por el canto, no por el relleno: un brillo especular por
+     dentro del borde, como la luz que refracta un bisel. Sin ese brillo esto no es
+     cristal, es un rectangulo translucido. */
+  --material-barra: rgba(255, 255, 255, 0.1);
+  --material-sheet: rgba(249, 249, 249, 0.98);
+  --blur-barra: saturate(190%) brightness(1.03) blur(16px);
+  --brillo-vidrio: rgba(255, 255, 255, 0.85);
+  --fondo-atenuado: rgba(0, 0, 0, 0.4);
+
+  /* ---- Colores por categoria ----
+     Se consumen con var(--cat-x) desde CSS. Nunca desde JS. */
+  --cat-vivienda: var(--azul);
+  --cat-comida: var(--naranja);
+  --cat-transporte: var(--turquesa);
+  --cat-ocio: var(--rosa);
+  --cat-salud: var(--rojo);
+  --cat-suscripciones: var(--morado);
+  --cat-compras: var(--indigo);
+  --cat-otros: var(--gris);
+  --cat-importado: var(--amarillo);
+  --cat-ingreso: var(--verde);
+
+  /* Pista del anillo de gasto */
+  --pista-anillo: var(--relleno-terciario);
+}
+
+/* ---- Tema oscuro ----
+   El selector [data-theme] va despues para que un cambio manual gane sobre el
+   ajuste del sistema en los dos sentidos. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --azul: #0a84ff;
+    --verde: #30d158;
+    --rojo: #ff453a;
+    --naranja: #ff9f0a;
+    --amarillo: #ffd60a;
+    --rosa: #ff375f;
+    --morado: #bf5af2;
+    --indigo: #5e5ce6;
+    --turquesa: #40c8e0;
+    --gris: #8e8e93;
+    --gris2: #636366;
+    --gris3: #48484a;
+    --gris4: #3a3a3c;
+    --gris5: #2c2c2e;
+    --gris6: #1c1c1e;
+
+    --fondo: #000000;
+    --fondo-secundario: #1c1c1e;
+
+    /* Invertido respecto al tema claro: tarjetas grises sobre negro. */
+    --fondo-agrupado: #000000;
+    --fondo-agrupado-elevado: #1c1c1e;
+
+    --etiqueta: #ffffff;
+    --etiqueta-secundaria: rgba(235, 235, 245, 0.6);
+    --etiqueta-terciaria: rgba(235, 235, 245, 0.3);
+    --etiqueta-cuaternaria: rgba(235, 235, 245, 0.16);
+
+    --separador: rgba(84, 84, 88, 0.65);
+    --separador-opaco: #38383a;
+    --relleno: rgba(120, 120, 128, 0.36);
+    --relleno-secundario: rgba(120, 120, 128, 0.32);
+    --relleno-terciario: rgba(118, 118, 128, 0.24);
+    --resalte-fila: rgba(120, 120, 128, 0.32);
+
+    /* El cristal oscuro invierte el truco: el brightness hunde el fondo hacia el
+       negro en vez de levantarlo, y asi el texto blanco se lee sin necesidad de
+       tapar nada. El brillo del canto tambien se apaga: un highlight al 85% sobre
+       negro seria una raya de neon. */
+    --material-barra: rgba(28, 28, 30, 0.25);
+    --material-sheet: rgba(28, 28, 30, 0.98);
+    --blur-barra: saturate(190%) brightness(0.78) blur(16px);
+    --brillo-vidrio: rgba(255, 255, 255, 0.18);
+    --fondo-atenuado: rgba(0, 0, 0, 0.5);
+
+    /* Sobre negro una sombra negra no existe: lo que despega la capsula aqui es el
+       aro claro, no la sombra. Por eso se invierte respecto al tema claro. */
+    --sombra-flotante: 0 4px 16px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.5);
+    --aro-vidrio: rgba(255, 255, 255, 0.08);
+  }
+}

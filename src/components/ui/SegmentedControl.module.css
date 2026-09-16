@@ -1,0 +1,52 @@
+.control {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--relleno-terciario);
+  border-radius: 9px;
+}
+
+.segmento {
+  position: relative;
+  flex: 1;
+  min-height: 32px;
+  padding: 0 var(--sp-3);
+  border-radius: 7px;
+}
+
+/*
+ * La pastilla se mueve con layoutId: Motion interpola su posicion con transform,
+ * que va en el compositor. Animar `left` provocaria layout en cada frame.
+ */
+.pastilla {
+  position: absolute;
+  inset: 0;
+  background: var(--fondo-agrupado-elevado);
+  border-radius: 7px;
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.12),
+    0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+/* Pintado despues de la pastilla, asi que queda por encima sin tocar z-index */
+.texto {
+  position: relative;
+  display: block;
+  font-size: var(--texto-subhead);
+  line-height: var(--linea-subhead);
+  letter-spacing: var(--track-subhead);
+  font-weight: var(--peso-medium);
+  color: var(--etiqueta);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.15s ease-out;
+}
+
+.segmento[data-activo='false'] .texto {
+  opacity: 0.6;
+}
+
+.segmento[data-activo='true'] .texto {
+  font-weight: var(--peso-semibold);
+}

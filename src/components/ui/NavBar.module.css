@@ -1,0 +1,74 @@
+/*
+ * Capsula flotante, igual que la TabBar pero arriba.
+ *
+ * El inset de arriba ya no es padding sino `top`: la capsula ES la barra, asi que
+ * la franja de estado tiene que quedar fuera de ella, no dentro.
+ */
+.barra {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + var(--margen-flotante));
+  left: calc(var(--margen) + env(safe-area-inset-left, 0px));
+  right: calc(var(--margen) + env(safe-area-inset-right, 0px));
+  z-index: 10;
+  height: var(--alto-navbar);
+  border-radius: var(--radio-capsula);
+  /* La barra no debe interceptar el scroll; solo sus botones reciben toques. */
+  pointer-events: none;
+}
+
+/*
+ * El material se pinta en su propia capa y se enciende con opacidad.
+ *
+ * Interpolar backdrop-filter: blur(Npx) hace que Safari vuelva a rasterizar el
+ * desenfoque en cada frame. Aqui el blur es constante y lo unico que se anima es
+ * la opacidad de una capa que no se transforma, que es barato.
+ */
+.material {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--material-barra);
+  backdrop-filter: var(--blur-barra);
+  -webkit-backdrop-filter: var(--blur-barra);
+  /* Sombra + aro despegan la capsula; el brillo de dentro es el canto del cristal. */
+  box-shadow:
+    var(--sombra-flotante),
+    0 0 0 var(--grosor-hairline) var(--aro-vidrio),
+    inset 0 var(--grosor-hairline) 0 var(--brillo-vidrio);
+}
+
+/* Los insets laterales los pone ya .barra, asi que aqui solo queda el aire de
+   dentro de la capsula. */
+.fila {
+  position: relative;
+  height: var(--alto-navbar);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: var(--sp-5);
+  padding-right: var(--sp-5);
+}
+
+.titulo {
+  font-size: var(--texto-body);
+  line-height: var(--linea-body);
+  letter-spacing: var(--track-body);
+  font-weight: var(--peso-semibold);
+  color: var(--etiqueta);
+  /* Que no choque con los botones laterales */
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.accion {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* Pegado al radio de la capsula, no al margen de la pantalla. */
+  right: var(--sp-4);
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}

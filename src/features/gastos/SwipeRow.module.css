@@ -1,0 +1,25 @@
+.envoltorio {
+  position: relative;
+  overflow: hidden;
+  background: var(--rojo);
+}
+
+.borrar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--ancho-borrar);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--rojo);
+}
+
+.desliza {
+  position: relative;
+  background: var(--fondo-agrupado-elevado);
+  /* El arrastre horizontal no debe pelearse con el scroll vertical de la lista */
+  touch-action: pan-y;
+}

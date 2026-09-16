@@ -1,0 +1,65 @@
+/*
+ * Capsula flotante: no toca ningun borde y el contenido pasa por debajo.
+ *
+ * El hueco de abajo se mide desde el indicador de inicio, no desde el borde fisico,
+ * o en un iPhone con indicador la capsula se le monta encima. El max() cubre el caso
+ * sin indicador, donde env() es 0 y quedaria pegada al canto.
+ */
+.barra {
+  position: absolute;
+  bottom: max(env(safe-area-inset-bottom, 0px), var(--margen-flotante));
+  left: calc(var(--margen) + env(safe-area-inset-left, 0px));
+  right: calc(var(--margen) + env(safe-area-inset-right, 0px));
+  z-index: 20;
+  border-radius: var(--radio-capsula);
+  background: var(--material-barra);
+  backdrop-filter: var(--blur-barra);
+  -webkit-backdrop-filter: var(--blur-barra);
+  /* Sombra + aro despegan la capsula; el brillo de dentro es el canto del cristal. */
+  box-shadow:
+    var(--sombra-flotante),
+    0 0 0 var(--grosor-hairline) var(--aro-vidrio),
+    inset 0 var(--grosor-hairline) 0 var(--brillo-vidrio);
+  /* El resalte de un tab tiene que recortarse al radio, no salirse por las esquinas. */
+  overflow: hidden;
+}
+
+/*
+ * El aire lateral no es decorativo: los extremos de la capsula son semicirculos y se
+ * comen la esquina justo a la altura de las etiquetas, que van abajo del todo. Sin
+ * este inset "Importar", que es la etiqueta mas larga y ademas la ultima, queda
+ * pegada a la curva mientras que "Panel" respira. Se mete en .filas y no en .tab
+ * para que las cuatro pestañas sigan midiendo lo mismo: descentrar solo las de los
+ * extremos arreglaria la curva y romperia el ritmo entre etiquetas.
+ */
+.filas {
+  display: flex;
+  height: var(--alto-tabbar);
+  padding: 0 var(--sp-4);
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  /* Objetivo tactil de 44pt aunque el icono sea pequeño */
+  min-height: var(--alto-fila);
+  color: var(--gris);
+  text-decoration: none;
+  transition: color 0.15s ease-out;
+}
+
+/* NavLink de react-router pone la clase .active en el enlace activo. */
+.tab:global(.active) {
+  color: var(--azul);
+}
+
+.texto {
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.06px;
+  font-weight: var(--peso-medium);
+}

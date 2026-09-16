@@ -1,0 +1,62 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  padding: var(--sp-3) var(--margen) 0;
+}
+
+.selector {
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mes {
+  text-align: center;
+  font-size: var(--texto-subhead);
+  line-height: var(--linea-subhead);
+  letter-spacing: var(--track-subhead);
+  color: var(--etiqueta-secundaria);
+}
+
+.vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
+}
+
+.vacioIcono {
+  color: var(--etiqueta-cuaternaria);
+}
+
+.vacioTitulo {
+  font-size: var(--texto-title3);
+  line-height: var(--linea-title3);
+  letter-spacing: var(--track-title3);
+  font-weight: var(--peso-semibold);
+}
+
+.vacioTexto {
+  font-size: var(--texto-subhead);
+  line-height: var(--linea-subhead);
+  letter-spacing: var(--track-subhead);
+  color: var(--etiqueta-secundaria);
+  max-width: 280px;
+}
+
+.acciones {
+  padding-top: var(--sp-3);
+  width: 100%;
+  max-width: 260px;
+}
+
+.destacado {
+  color: var(--rojo);
+}
+
+.positivo {
+  color: var(--verde);
+}

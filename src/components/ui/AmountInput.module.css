@@ -1,0 +1,55 @@
+.campo {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-6) var(--sp-5);
+}
+
+.entrada {
+  /* Nunca por debajo de 16px o iOS hace zoom al enfocar. Aqui es un titular. */
+  font-size: 56px;
+  line-height: 64px;
+  letter-spacing: -1.2px;
+  font-weight: var(--peso-bold);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  color: var(--etiqueta);
+  text-align: right;
+  width: 100%;
+  min-width: 0;
+  caret-color: var(--azul);
+}
+
+.entrada::placeholder {
+  color: var(--etiqueta-cuaternaria);
+}
+
+.simbolo {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: var(--peso-semibold);
+  color: var(--etiqueta-terciaria);
+  flex-shrink: 0;
+}
+
+/* Variante en linea, para las filas del formulario de Meta */
+.enFila {
+  padding: 0;
+}
+
+.enFila .entrada {
+  font-size: var(--texto-body);
+  line-height: var(--linea-body);
+  letter-spacing: var(--track-body);
+  font-weight: var(--peso-regular);
+  color: var(--azul);
+  width: auto;
+  flex: 1;
+}
+
+.enFila .simbolo {
+  font-size: var(--texto-body);
+  line-height: var(--linea-body);
+  color: var(--etiqueta-secundaria);
+}

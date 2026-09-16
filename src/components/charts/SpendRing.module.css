@@ -1,0 +1,72 @@
+.anillo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+}
+
+.svg {
+  /*
+   * Empieza a las 12 en punto.
+   *
+   * transform-box: fill-box es obligatorio: sin el, transform-origin en un
+   * elemento SVG se resuelve contra el viewport y no contra el elemento, y en
+   * Safari el giro se va a tomar viento sin dar ningun error.
+   */
+  transform: rotate(-90deg);
+  transform-box: fill-box;
+  transform-origin: center;
+  overflow: visible;
+}
+
+.pista {
+  fill: none;
+  stroke: var(--pista-anillo);
+}
+
+.progreso {
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* Vuelta extra cuando se pasa del 100%, como los anillos de Actividad */
+.exceso {
+  fill: none;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.centro {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+  pointer-events: none;
+}
+
+.cifra {
+  font-size: 44px;
+  line-height: 48px;
+  letter-spacing: -1px;
+  font-weight: var(--peso-bold);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  color: var(--etiqueta);
+}
+
+.pie {
+  font-size: var(--texto-footnote);
+  line-height: var(--linea-footnote);
+  letter-spacing: var(--track-footnote);
+  color: var(--etiqueta-secundaria);
+  text-align: center;
+  max-width: 140px;
+}
+
+.aviso {
+  color: var(--naranja);
+  font-weight: var(--peso-semibold);
+}

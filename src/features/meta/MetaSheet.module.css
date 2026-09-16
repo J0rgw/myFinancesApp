@@ -1,0 +1,46 @@
+.contenido {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  padding-top: var(--sp-4);
+}
+
+.entrada {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+  font-size: var(--texto-body);
+  line-height: var(--linea-body);
+  letter-spacing: var(--track-body);
+  color: var(--etiqueta-secundaria);
+}
+
+.selector {
+  padding: 0 var(--margen);
+}
+
+.previa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--margen) var(--sp-4);
+}
+
+.cifra {
+  font-size: var(--texto-title1);
+  line-height: var(--linea-title1);
+  letter-spacing: var(--track-title1);
+  font-weight: var(--peso-bold);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+.leyenda {
+  font-size: var(--texto-subhead);
+  line-height: var(--linea-subhead);
+  letter-spacing: var(--track-subhead);
+  color: var(--etiqueta-secundaria);
+  text-align: center;
+  max-width: 300px;
+}

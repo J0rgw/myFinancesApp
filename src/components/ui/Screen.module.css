@@ -1,0 +1,55 @@
+.screen {
+  position: absolute;
+  inset: 0;
+  background: var(--fondo-agrupado);
+  overflow: hidden;
+}
+
+/*
+ * El unico elemento con scroll de toda la app. Ver la nota del shell fijo en
+ * global.css: si esto se mueve al documento vuelven los cuatro bugs de iOS.
+ */
+.scroller {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* El rebote no debe propagarse al documento ni, dentro de un sheet, al fondo */
+  overscroll-behavior-y: contain;
+
+  /*
+   * Las dos barras son capsulas que flotan por encima del scroller, asi que el hueco
+   * que hay que reservar no es solo su alto: tambien el aire que las separa del
+   * borde. Si aqui se olvida el --margen-flotante, la primera y la ultima fila
+   * quedan medio tapadas y solo se nota al llegar al final de la lista.
+   */
+  padding-top: calc(
+    env(safe-area-inset-top, 0px) + var(--margen-flotante) + var(--alto-navbar)
+  );
+  padding-bottom: calc(
+    max(env(safe-area-inset-bottom, 0px), var(--margen-flotante)) + var(--alto-tabbar) +
+      var(--sp-6)
+  );
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/*
+ * El titulo grande vive dentro del scroller y se va solo hacia arriba, tal cual
+ * hace iOS. La barra lo tapa con su material al pasar por debajo; el titulo
+ * pequeño aparece a la vez (ver NavBar).
+ */
+.tituloGrande {
+  font-size: var(--texto-large-title);
+  line-height: var(--linea-large-title);
+  letter-spacing: var(--track-large-title);
+  font-weight: var(--peso-bold);
+  color: var(--etiqueta);
+  padding: var(--sp-3) var(--margen) var(--sp-3);
+}
+
+.contenido {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+}

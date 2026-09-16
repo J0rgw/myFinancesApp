@@ -1,0 +1,85 @@
+.capa {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+.fondo {
+  position: absolute;
+  inset: 0;
+  background: var(--fondo-atenuado);
+}
+
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Deja ver la vista de detras, que es lo que hace legible el escalado al 92% */
+  top: max(env(safe-area-inset-top, 0px), 10px);
+
+  display: flex;
+  flex-direction: column;
+  background: var(--material-sheet);
+  border-radius: var(--radio-sheet) var(--radio-sheet) 0 0;
+  overflow: hidden;
+  box-shadow: 0 -1px 20px rgba(0, 0, 0, 0.18);
+}
+
+.agarre {
+  /* Esta zona arrastra siempre, este donde este el scroll del cuerpo */
+  flex-shrink: 0;
+  padding: var(--sp-2) 0 0;
+  touch-action: none;
+}
+
+.agarre::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 5px;
+  margin: 0 auto;
+  border-radius: 3px;
+  background: var(--etiqueta-cuaternaria);
+}
+
+/*
+ * Barra tipo iOS con Cancelar / Listo.
+ *
+ * No es decoracion: el agarre no puede ser la unica salida. Sin esto el sheet es
+ * inservible con teclado o con lector de pantalla.
+ */
+.barra {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--sp-4);
+  min-height: var(--alto-navbar);
+  padding: 0 var(--margen);
+  touch-action: none;
+}
+
+.titulo {
+  font-size: var(--texto-body);
+  line-height: var(--linea-body);
+  letter-spacing: var(--track-body);
+  font-weight: var(--peso-semibold);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.izquierda {
+  justify-self: start;
+}
+
+.derecha {
+  justify-self: end;
+}
+
+.cuerpo {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: var(--sp-6);
+}

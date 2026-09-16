@@ -1,0 +1,117 @@
+/* El input de archivo real: se dispara desde un <Button> para no enseñar el
+   control nativo, que no hay forma de que parezca de iOS. display:none lo
+   dejaría fuera del arbol de accesibilidad, asi que se esconde a la vista
+   pero sigue siendo enfocable. */
+.entradaArchivo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/*
+ * El reset global le da `font: inherit` a input y a button, pero no a select:
+ * sin esto sale con la fuente del sistema y canta al lado del resto de filas.
+ *
+ * No bajar de 16px: Safari hace zoom al abrir la rueda. Aqui va el cuerpo de 17px
+ * para igualar a .valor de <Row>, que es el sitio donde vive este control.
+ */
+.selector {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+  font-family: var(--fuente);
+  font-size: var(--texto-body);
+  line-height: var(--linea-body);
+  letter-spacing: var(--track-body);
+  color: var(--etiqueta-secundaria);
+  background: transparent;
+  border: 0;
+  /* Safari pinta su propia flecha y su fondo si no se desactiva */
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
+}
+
+.importe {
+  font-size: var(--texto-body);
+  line-height: var(--linea-body);
+  letter-spacing: var(--track-body);
+  font-weight: var(--peso-medium);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  color: var(--etiqueta);
+}
+
+.ingreso {
+  color: var(--verde);
+}
+
+.textoResto,
+.textoAviso,
+.textoError {
+  font-size: var(--texto-subhead);
+  line-height: var(--linea-subhead);
+  letter-spacing: var(--track-subhead);
+}
+
+.textoResto {
+  color: var(--etiqueta-secundaria);
+}
+
+.textoAviso {
+  color: var(--naranja);
+  font-weight: var(--peso-medium);
+}
+
+.textoError {
+  color: var(--rojo);
+  font-weight: var(--peso-medium);
+}
+
+.confirmar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--margen) 0;
+}
+
+/* ---- Estados a pantalla completa (elegir archivo / confirmacion) ---- */
+
+.vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
+}
+
+.vacioIcono {
+  color: var(--etiqueta-cuaternaria);
+}
+
+.iconoBien {
+  color: var(--verde);
+}
+
+.vacioTitulo {
+  font-size: var(--texto-title3);
+  line-height: var(--linea-title3);
+  letter-spacing: var(--track-title3);
+  font-weight: var(--peso-semibold);
+}
+
+.acciones {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding-top: var(--sp-3);
+  width: 100%;
+  max-width: 260px;
+}

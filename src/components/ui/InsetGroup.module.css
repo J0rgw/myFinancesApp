@@ -1,0 +1,26 @@
+.grupo {
+  margin: 0 var(--margen);
+}
+
+.cabecera {
+  font-size: var(--texto-footnote);
+  line-height: var(--linea-footnote);
+  letter-spacing: var(--track-footnote);
+  color: var(--etiqueta-secundaria);
+  text-transform: uppercase;
+  padding: 0 var(--sp-5) var(--sp-3);
+}
+
+.tarjeta {
+  background: var(--fondo-agrupado-elevado);
+  border-radius: var(--radio-grupo);
+  overflow: hidden;
+}
+
+.pie {
+  font-size: var(--texto-footnote);
+  line-height: var(--linea-footnote);
+  letter-spacing: var(--track-footnote);
+  color: var(--etiqueta-secundaria);
+  padding: var(--sp-3) var(--sp-5) 0;
+}
