@@ -50,6 +50,7 @@ Desktop.ini
 .agents/
 .codex/
 .claude/
+.prompts/
 claude.md
 CODEX_PROJECT_BRIEF.md
 
