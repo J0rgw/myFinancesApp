@@ -91,7 +91,11 @@
   line-height: var(--linea-body);
   letter-spacing: var(--track-body);
   color: var(--etiqueta-secundaria);
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: 55%;
+  overflow-wrap: anywhere;
+  text-align: right;
 }
 
 .chevron {

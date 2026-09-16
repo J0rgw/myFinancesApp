@@ -2,6 +2,8 @@ import { createContext, useContext, useRef, type ReactNode } from 'react'
 import { useScroll, type MotionValue } from 'motion/react'
 import { useScrollRestoration } from '@/lib/hooks/useScrollRestoration'
 import { NavBar } from './NavBar'
+import { DemoNotice } from '@/features/demo/DemoNotice'
+import { useStore } from '@/store/StoreContext'
 import s from './Screen.module.css'
 
 /*
@@ -29,17 +31,19 @@ interface Props {
 }
 
 export function Screen({ titulo, clave, accion, children }: Props) {
+  const { esDemo } = useStore()
   const ref = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll({ container: ref })
 
-  useScrollRestoration(clave, ref)
+  useScrollRestoration(`${esDemo ? 'demo' : 'personal'}-${clave}`, ref)
 
   return (
     <ScrollCtx.Provider value={scrollY}>
       <div className={s.screen}>
-        <NavBar titulo={titulo} accion={accion} />
+        <NavBar titulo={esDemo ? `${titulo} · Demo` : titulo} accion={accion} />
         <div ref={ref} className={s.scroller}>
           <h1 className={s.tituloGrande}>{titulo}</h1>
+          <DemoNotice ofrecerDemo={clave === 'panel' || clave === 'meta'} />
           <div className={s.contenido}>{children}</div>
         </div>
       </div>

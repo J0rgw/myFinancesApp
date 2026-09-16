@@ -2,7 +2,7 @@ import { createHashRouter, Navigate, Outlet } from 'react-router-dom'
 import { Home, Import, Target, Wallet } from 'reicon-react'
 import { AppShell } from './AppShell'
 import { SheetHost } from './SheetHost'
-import { StoreProvider } from '@/store/StoreContext'
+import { StoreProvider, useStore } from '@/store/StoreContext'
 import { TabBar, type Tab } from '@/components/ui/TabBar'
 import { PanelScreen } from '@/features/panel/PanelScreen'
 import { GastosScreen } from '@/features/gastos/GastosScreen'
@@ -16,20 +16,21 @@ const TABS: Tab[] = [
   { ruta: '/importar', texto: 'Importar', icono: Import },
 ]
 
+function Espacio() {
+  const { esDemo, versionEspacio } = useStore()
+  // Discard open forms and CSV previews when switching or resetting workspaces.
+  return <SheetHost key={`${esDemo}-${versionEspacio}`}>
+    <AppShell>
+      <Outlet />
+      <TabBar tabs={TABS} />
+    </AppShell>
+  </SheetHost>
+}
+
 function Raiz() {
   return (
     <StoreProvider>
-      <SheetHost>
-        <AppShell>
-          {/*
-            Las pestañas de iOS no tienen transicion, asi que aqui no hay
-            AnimatePresence: cambio instantaneo. Un deslizamiento horizontal
-            delataria una app web al momento.
-          */}
-          <Outlet />
-          <TabBar tabs={TABS} />
-        </AppShell>
-      </SheetHost>
+      <Espacio />
     </StoreProvider>
   )
 }

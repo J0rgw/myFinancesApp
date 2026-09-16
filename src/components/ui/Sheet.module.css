@@ -23,6 +23,8 @@
   background: var(--material-sheet);
   border-radius: var(--radio-sheet) var(--radio-sheet) 0 0;
   overflow: hidden;
+  max-width: 680px;
+  margin-inline: auto;
   box-shadow: 0 -1px 20px rgba(0, 0, 0, 0.18);
 }
 
@@ -66,7 +68,12 @@
   letter-spacing: var(--track-body);
   font-weight: var(--peso-semibold);
   text-align: center;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 360px) {
+  .barra { gap: var(--sp-2); padding-inline: var(--sp-3); }
+  .barra button { padding-inline: var(--sp-3); }
 }
 
 .izquierda {

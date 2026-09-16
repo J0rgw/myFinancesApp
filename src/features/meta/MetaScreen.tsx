@@ -15,7 +15,7 @@ const horizonteTexto = (h: Horizonte) =>
   h === 12 ? '1 año' : `${h} ${h === 1 ? 'mes' : 'meses'}`
 
 export function MetaScreen() {
-  const { estado, actualizarAjustes, reiniciar, derivado } = useStore()
+  const { estado, actualizarAjustes, reiniciar, derivado, esDemo } = useStore()
   const { ajustes } = estado
   const { resumen, metasCustom } = derivado
 
@@ -159,7 +159,7 @@ export function MetaScreen() {
           )}
         </div>
 
-        <InsetGroup
+        {!esDemo ? <InsetGroup
           titulo="Datos"
           pie="Todo se guarda solo en este dispositivo. Borrarlo no se puede deshacer."
         >
@@ -169,7 +169,7 @@ export function MetaScreen() {
               if (confirm('¿Seguro que quieres borrar todos tus datos?')) reiniciar()
             }}
           />
-        </InsetGroup>
+        </InsetGroup> : null}
 
         <div style={{ padding: '0 var(--margen)' }}>
           <Button variante="gris" onClick={() => history.back()}>

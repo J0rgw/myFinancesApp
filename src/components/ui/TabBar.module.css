@@ -22,6 +22,8 @@
     inset 0 var(--grosor-hairline) 0 var(--brillo-vidrio);
   /* El resalte de un tab tiene que recortarse al radio, no salirse por las esquinas. */
   overflow: hidden;
+  max-width: 728px;
+  margin-inline: auto;
 }
 
 /*
